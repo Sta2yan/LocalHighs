@@ -13,13 +13,8 @@ namespace LocalHighs
             Random random = new Random();
 
             int[] array = new int[30];
-            int numberArray;
             int localMaximumNumberArray = 0;
             int amountLocalMaximumNumberArray = 0;
-            int lastIndexArray = array.Length - 1;
-            int firstIndexArray = 0;
-            int previousNumberArray;
-            int nextNumberArray;
 
             for (int currentIndex = 0; currentIndex < array.Length; currentIndex++)
             {
@@ -41,45 +36,35 @@ namespace LocalHighs
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("| ");
+
+            if (array[0] > array[1])
+            {
+                localMaximumNumberArray = array[0];
+                amountLocalMaximumNumberArray += 1;
+                Console.Write(localMaximumNumberArray + " | ");
+            }
+
             for (int currentIndex = 0; currentIndex < array.Length; currentIndex++)
             {
-                if (currentIndex != firstIndexArray && currentIndex != lastIndexArray)
+                if (currentIndex != 0 && currentIndex != array.Length - 1)
                 {
-                    numberArray = array[currentIndex];
-                    nextNumberArray = array[currentIndex + 1];
-                    previousNumberArray = array[currentIndex - 1];
-                    if (numberArray > previousNumberArray && numberArray > nextNumberArray)
+                    if (array[currentIndex] > array[currentIndex - 1] && array[currentIndex] > array[currentIndex + 1])
                     {
-                        localMaximumNumberArray = numberArray;
-                        amountLocalMaximumNumberArray += 1;
-                        Console.Write(localMaximumNumberArray + " | ");
-                    }
-                }
-                else if (currentIndex == lastIndexArray)
-                {
-                    numberArray = array[currentIndex];
-                    previousNumberArray = array[currentIndex - 1];
-                    if (numberArray > previousNumberArray)
-                    {
-                        localMaximumNumberArray = numberArray;
-                        amountLocalMaximumNumberArray += 1;
-                        Console.Write(localMaximumNumberArray + " | ");
-                    }
-                }
-                else
-                {
-                    numberArray = array[currentIndex];
-                    previousNumberArray = array[currentIndex];
-                    nextNumberArray = array[currentIndex + 1];
-                    if (array[currentIndex] > nextNumberArray)
-                    {
-                        localMaximumNumberArray = numberArray;
+                        localMaximumNumberArray = array[currentIndex];
                         amountLocalMaximumNumberArray += 1;
                         Console.Write(localMaximumNumberArray + " | ");
                     }
                 }
             }
-            Console.Write($"       Кол-во локальных максимумов: {amountLocalMaximumNumberArray}");
+
+            if (array[array.Length - 1] > array[array.Length - 2])
+            {
+                localMaximumNumberArray = array[array.Length - 1];
+                amountLocalMaximumNumberArray += 1;
+                Console.Write(localMaximumNumberArray + " | ");
+            }
+
+            Console.Write($"\nКол-во локальных максимумов: {amountLocalMaximumNumberArray}");
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n-----------------");
