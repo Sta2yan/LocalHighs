@@ -44,16 +44,13 @@ namespace LocalHighs
                 Console.Write(localMaximumNumberArray + " | ");
             }
 
-            for (int currentIndex = 0; currentIndex < array.Length; currentIndex++)
+            for (int currentIndex = 1; currentIndex < array.Length - 1; currentIndex++)
             {
-                if (currentIndex != 0 && currentIndex != array.Length - 1)
+                if (array[currentIndex] > array[currentIndex - 1] && array[currentIndex] > array[currentIndex + 1])
                 {
-                    if (array[currentIndex] > array[currentIndex - 1] && array[currentIndex] > array[currentIndex + 1])
-                    {
-                        localMaximumNumberArray = array[currentIndex];
-                        amountLocalMaximumNumberArray += 1;
-                        Console.Write(localMaximumNumberArray + " | ");
-                    }
+                    localMaximumNumberArray = array[currentIndex];
+                    amountLocalMaximumNumberArray += 1;
+                    Console.Write(localMaximumNumberArray + " | ");
                 }
             }
 
